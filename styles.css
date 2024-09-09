@@ -1,0 +1,719 @@
+body, html {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 62.5%;
+    --window-width: 100vw;
+    --window-height: 100vh;
+    --breakpoint-mobile: 800px;
+    --color-yellow: #fff500;
+    --color-white: #f9f9f9;
+    --color-black: #3d3b39;
+    --color-blue: #57d1f8;
+    --color-red: #ff612f;
+    --color-green: #27a944;
+    --color-beige: #e4d8b1;
+    --color-pink: #ff8a7a;
+    --color-light-pink: #ffcdcc;
+    --color-purple: #8486ff;
+    --color-winered: #d8716b;
+    --color-gray: #cbcbcb;
+    --color-light-gray: #dcdcdc;
+    --color-header:rgba(61, 59, 57, 0.8);
+}
+
+@media screen and (min-width: 480px) and (max-height: 840px) {
+    :root {
+        --window-height: 88vh !important;
+    }
+}
+@media screen and (max-width: 480px) {
+    :root {
+        font-size: 2.45vw;
+    }
+}
+@media screen and (max-width: 480px) {
+    body, html {
+        background: #000;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 50, .5);
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px hsla(0, 0%, 100%, .3);
+}
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    box-shadow: inset 0 0 0;
+}
+::selection {
+    background-color: var(--color-yellow);
+    color: var(--color-black);
+}
+
+.screen-outer {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(images/背景.png);
+    background-size: 100vw 100vh;
+    background-size: cover;
+}
+
+@media screen and (max-width: 480px) {
+    .screen-outer {
+        height: 100%;
+    }
+}
+
+.screen-flame {
+    position: relative;
+    padding: 2.5em;
+    background: var(--color-black);
+    border-radius: 5rem;
+    z-index: 9;
+}
+
+/* .transitionlayer {
+    position: absolute;
+    top: 2.4rem;
+    left: 2.4rem;
+    width: var(--window-width);
+    height: var(--window-height);
+    z-index: 10000;
+    border-radius: 30px;
+    overflow: hidden;
+} */
+
+.screen-window {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: var(--window-width);
+    height: var(--window-height);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background: var(--color-white);
+}
+
+@media (min-width: 600px) {
+    .screen-window {
+        border-radius: 2.5rem;
+    }
+}
+
+.home-container, .home-main {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.home-container {
+    min-height: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home-main {
+    position: relative;
+    flex: 1 1;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: var(--color-white);
+    z-index: 0;
+}
+
+.home-applist {
+    width: 100%;
+    margin-top: 30vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 12.5rem;
+    grid-gap: 1rem;
+    padding: 2rem 2rem 0;
+}
+
+.app-item.app-isactive {
+    transform: translate(0) scale(1);
+}
+
+.app-item:first-child {
+    /* transform: translate(-30rem, -30rem) scale(5, 6); */
+    transition: transform .45s cubic-bezier(.24,1.26,.64,1) .2s;
+}
+
+.app-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    cursor: url(images/X_透過.png), pointer;
+}
+
+.app-item .app-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8.8rem;
+    height: 8.8rem;
+    border-radius: 2.2rem;
+    margin: 0 0 .5rem;
+    z-index: 1;
+}
+
+.app-item .app-icon .app-icon-rect {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8.8rem;
+    height: 8.8rem;
+    border-radius: 2.2rem;
+    background-color: var(--color-white);
+}
+
+.app-item .app-icon .app-icon_profile .icon {
+    width: 8rem;
+    height: 8rem;
+}
+
+.app-item .app-icon .icon  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 6rem;
+    height: 6rem;
+}
+
+.app-item .app-icon .icon img{
+    width: 100%;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.app-name {
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.3rem;
+
+}
+
+.home-main .home-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+style attribute {
+    --window-width: 414px;
+    --window-height: 796px;
+}
+
+
+
+.note-box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    flex: 1 1;
+    padding: 0 2rem 0 2rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    z-index: 0;
+    color: var(--color-black);
+}
+
+.note-box::before {
+    content: "";
+    position: absolute;
+    border-right: dotted 1rem var(--color-gray);
+    background-color: var(--color-white);
+    padding: 0.5rem;
+    top: 0; /* 上部から開始 */
+    bottom: 0; /* 下部まで拡張 */
+    left: 0;
+}
+
+.note-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+.header-mask {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    align-items: center; /* 垂直方向の中央揃え */
+    justify-content: space-between; /* ボタンを左右に配置 */
+    background-color: var(--color-header);
+    position: relative; /* 画像の位置指定を親要素に基づくようにする */
+}
+
+.header-logo {
+    height: 60%; /* 親要素に収まるように調整 */
+    object-fit: contain; /* 画像がアスペクト比を維持しながら親要素に収まるようにする */
+    margin: 0 50%; /* 左右に余白を追加 */
+    transform: translate(-50%);
+}
+
+.hamburger-menu {
+    position: absolute; /* 親要素の相対位置を基準に配置 */
+    top: 0.6rem; /* 上からの距離 */
+    right: 3rem; /* 右からの距離 */
+    background: transparent; /* 背景なし */
+    border: none; /* 枠線なし */
+    border-radius: 10px;
+    color: var(--color-white);
+    font-size: 2.5rem; /* ボタンサイズ調整 */
+    font-weight: bold;
+    cursor: pointer; /* カーソルをポインタに */
+    transition: background-color 0.3s ease;
+}
+
+.back-button {
+    position: absolute;
+    top: 1rem; /* 上からの距離 */
+    left: 3rem; /* 左からの距離 */
+    padding: 0rem 0.5rem;
+    border: none;
+    border-radius: 10px;
+    color: var(--color-white);
+    background-color: transparent;
+    font-size: 2.5rem; /* ボタンサイズ調整 */
+    cursor: pointer; /* カーソルをポインタに */
+    transition: background-color 0.3s ease;
+}
+.hamburger-menu:hover {
+    color: var(--color-black);
+    background-color: var(--color-white);
+}
+
+.back-button:hover {
+    color: var(--color-black);
+    background-color: var(--color-white);
+}
+
+.breadcrumb {
+    display: flex;
+    width: 100%;
+    gap: 0 10px;
+    list-style: none;
+    padding: 0;
+    font-size: .9em;
+    margin-top: 6rem;
+    margin-bottom: 0;
+}
+
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb li:first-child::before {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-right: 4px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z' fill='%23333333'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    content: '';
+}
+
+.breadcrumb li:not(:last-child)::after {
+    display: inline-block;
+    width: .3em;
+    height: .6em;
+    margin-left: 12px;
+    background-color: #333333;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    content: '';
+}
+
+.breadcrumb a {
+    color: #333333;
+    text-decoration: none;
+}
+
+.note-title {
+    margin: 0; /* 上下の余白を調整 */
+    padding: 10px 0; /* タイトル内の上下の余白 */
+    font-size: 2rem; /* タイトルのフォントサイズ */
+    font-weight: bold;
+    text-align: center; /* 中央揃え */
+    border-top: 0.5rem solid var(--color-gray); /* 上部の線 */
+    border-bottom: 0.5rem solid var(--color-gray); /* 下部の線 */
+    width: 100%; /* 横幅を調整 */
+    position: relative;
+}
+.note-title:after {
+	position: absolute;
+	bottom: -0.5rem;
+	content: " ";
+	display: block;
+	width: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+	border-bottom: solid 0.5rem var(--color-black);
+}
+
+h1 {
+    width: 100%;
+    font-size: 1.5rem;
+	padding: .3em 0 .3em 1rem;
+	background: -webkit-repeating-linear-gradient(-45deg, #fff, #fff 3px,var(--color-light-gray) 3px, var(--color-light-gray) 7px);
+	background: repeating-linear-gradient(-45deg, #fff, #fff 3px,var(--color-light-gray) 3px, var(--color-light-gray) 7px);
+}
+h1:before {
+	content: '●';
+	margin-right: .2em;
+	color: var(--color-black);
+    font-size: 2rem;
+}
+
+.note-description {
+    font-size: 1.4em;
+    background-image:linear-gradient(180deg,rgba(204,204,204,0) 0%,rgba(204,204,204,0) 98%,rgba(100,100,100,100) 100%);
+    background-repeat:repeat-y;
+    background-size:100% 2.4em;
+    line-height:2.4em;
+    padding: 0 0 0 1.2rem;
+}
+
+.note-description p {
+    line-height:2.4em;
+    margin: 0;
+}
+
+.note-fig {
+	position: relative;
+    margin: 3rem 3rem 3rem 5rem;
+}
+
+.note-fig::before,
+.note-fig::after {
+	content: '';
+	position: absolute;
+	transform: rotate(-45deg);
+	width: 75px;
+	height: 25px;
+	background-color: var(--color-white);
+	z-index: 1;
+}
+
+.note-fig::before {
+	top: -5px;
+	left: -30px;
+	border-bottom: 2px solid #ddd;
+}
+
+.note-fig::after {
+	bottom: -5px;
+	right: -30px;
+	border-top: 1px solid #ddd;
+}
+.note-fig img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.note-fig-effect img {
+    max-width: 100px;
+    height: auto;
+}
+
+.figside-effect {
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.figside-text h5 {
+    font-size: 1.4em;
+    text-align: center;
+}
+
+.figside-text p {
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.basic-table{
+width: 100%;
+border-collapse: collapse;
+}
+
+.basic-table tr{
+border-bottom: solid 2px white;
+}
+
+.basic-table tr:last-child{
+border-bottom: none;
+}
+
+.basic-table th{
+position: relative;
+text-align: left;
+width: 40%;
+background-color: var(--color-black);
+color: white;
+text-align: center;
+font-size: 1.2rem;
+padding: 10px 0;
+}
+
+.basic-table th:after{
+display: block;
+content: "";
+width: 0px;
+height: 0px;
+position: absolute;
+top:calc(50% - 10px);
+right:-10px;
+border-left: 10px solid var(--color-black);
+border-top: 10px solid transparent;
+border-bottom: 10px solid transparent;
+}
+
+.basic-table td{
+text-align: left;
+width: 60%;
+text-align: center;
+font-size: 1.2rem;
+background-color: #eee;
+padding: 10px 0;
+}
+/* 横スクロールを可能にするコンテナ */
+.table-scroll {
+    overflow-x: auto; /* 横スクロールを有効にする */
+    width: 100%; /* 親コンテナに合わせる */
+    margin: 0 auto; /* 中央揃え */
+}
+
+/* テーブルのスタイル設定 */
+.scroll-table {
+    border-collapse: collapse;
+    width: 1000px; /* テーブル全体の幅を固定 */
+    min-width: 800px; /* 最小幅を設定してスクロールを誘発 */
+}
+
+/* テーブル行のスタイル設定 */
+.scroll-table tr {
+    border-bottom: solid 1px #eee;
+    cursor: pointer;
+}
+
+/* 行のホバー時のスタイル */
+.scroll-table tr:hover {
+    background-color: #d4f0fd; /* 背景色を変更して視覚的なフィードバックを追加 */
+}
+
+/* ヘッダーとセルのスタイル設定 */
+.scroll-table th,
+.scroll-table td {
+    text-align: center;
+    padding: 15px 10px;
+    min-width: 200px; /* セルの最小幅を設定して均等に表示 */
+}
+
+/* アイコンセルのスタイル */
+.scroll-table td.icon {
+    background-size: 35px; /* アイコンのサイズを調整 */
+    background-position: left 5px center; /* アイコンの位置を調整 */
+    background-repeat: no-repeat;
+    padding-left: 40px; /* アイコンとの距離を調整 */
+}
+
+/* 特定のアイコンの背景画像 */
+.scroll-table td.icon.bird {
+    background-image: url(images/Fわん.png);
+}
+
+.scroll-table td.icon.whale {
+    background-image: url(images/Gさん.png);
+}
+
+.scroll-table td.icon.crab {
+    background-image: url(images/W龍.png);
+}
+
+.space-box {
+    position: relative;
+    width: var(--window-width);
+    height: 30px;
+    line-height: 30px;
+}
+
+.delay-time02{
+    animation-delay: 0.2s;
+}
+/*==================================================
+スタート時は要素自体を透過0にするためのopacity:0;を指定する
+===================================*/
+
+.fadeup-box{
+	opacity: 0;
+}
+
+/*==================================================
+動き自体の指定：今回は「ふわっ」
+===================================*/
+
+.fadeup {
+animation-name:fadeUpAnime;
+animation-duration:0.5s;
+animation-fill-mode:forwards;
+opacity: 0;
+}
+@keyframes fadeUpAnime{
+  from {
+    opacity: 0;
+	transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+	transform: translateY(0);
+  }
+}
+
+/* 全体のスタイル設定 */
+.club-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2列表示 */
+    gap: 20px; /* 各アイテム間のスペース */
+    padding: 20px;
+}
+
+/* 各クラブアイテムのスタイル設定 */
+.club-item {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+/* クラブアイテムのホバー時のエフェクト */
+.club-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* クラブ画像のスタイル設定 */
+.club-item img {
+    width: 100%;
+    height: 180px; /* 高さを固定 */
+    object-fit: cover; /* 画像のアスペクト比を維持して表示 */
+}
+
+/* クラブ名のスタイル設定 */
+.club-name {
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    color: #333;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fixed-button {
+    position: fixed;
+    top: 90%;
+    width: var(--window-width);
+    max-width: var(--window-width);
+    background-color: var(--color-black);
+    text-align: center;
+    padding: 5px 0;
+    z-index: 10;
+    border-radius: 0 0 30px 30px;
+}
+
+.fixed-button button {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 20px;
+}
+
+.fixed-button button:hover {
+    background-color: #ff5722;
+}
+
+.hover-list {
+    position: fixed;
+    bottom: -200px;
+    width: var(--window-width);
+    max-width: var(--window-width);
+    background-color: #f5f5f5;
+    border-top: 2px solid #333;
+    transition: bottom 0.3s ease-in-out;
+    z-index: 9;
+}
+
+.hover-list ul {
+    list-style: none;
+    padding: 20px;
+    margin: 0;
+}
+
+.hover-list ul li {
+    margin: 10px 0;
+}
+
+.hover-list ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+.hover-list ul li a:hover {
+    color: #ff9800;
+}
+
+.date {
+    font-size: 14px;
+    color: #777;
+    margin-left: 10px;
+}
+
+.show {
+    bottom: 60px; /* ボタンの上に表示されるように調整 */
+}
